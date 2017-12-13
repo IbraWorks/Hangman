@@ -159,12 +159,13 @@ class Hangman
 
   def continue?
     puts "press yes if you want to continue, and no if you want to quit"
-    play_game if get_response == "yes"
-    if get_guess == "no"
-      puts "Hope you had fun, be sure to remember which file you saved this game"
-      puts "in so that you can load it up next time. bye \n"
-      exit
-    end
+    get_response == "yes" ? play_game : print_exit_response
+  end
+
+  def print_exit_response
+    puts "Hope you had fun, be sure to remember which file you saved this game"
+    puts "in so that you can load it up next time. bye \n"
+    exit
   end
 
   def get_saved_file_number
