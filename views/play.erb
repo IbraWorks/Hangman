@@ -1,0 +1,12 @@
+<h3>Your word is: <%= @gapped_solution.join(" ") %> </h3>
+
+<h3> Your incorrect guesses: <%= @incorrect_guesses.join(" ") %> </h3>
+<h3> You have <%= @guesses_remaining %> guesses left </h3>
+<p>Enter your guess</p>
+
+<form method="post">
+  <input type='text' name='guess'>
+  <input type='submit' value='Guess!'>
+</form>
+
+<p> Bottom of the page </p>

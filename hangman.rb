@@ -1,3 +1,4 @@
+
 require_relative "board.rb"
 require "json"
 class Hangman
@@ -209,7 +210,6 @@ class Hangman
   def intro
 
     puts "
-
                                 /$$   /$$                                     /$$      /$$
                                 | $$  | $$                                    | $$$    /$$$
                                 | $$  | $$  /$$$$$$  /$$$$$$$   /$$$$$$       | $$$$  /$$$$  /$$$$$$  /$$$$$$$
@@ -221,10 +221,6 @@ class Hangman
                                                                /$$  \\$$
                                                               |  $$$$$$/
                                                               \\______/
-
-
-
-
                               "
 
     puts "\n\n"
