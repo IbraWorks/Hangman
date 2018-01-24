@@ -21,16 +21,15 @@ end
 
 get '/play' do
   get_all_session_data
-  if success? then redirect to('/win') end
-  if failure? then redirect to('/lose') end
+  redirect to('/win') if win?
+  redirect to('/lose') if lose?
+  session[:warning_message] = nil
   erb :play
 end
 
 post "/play" do
   get_all_session_data
   evaluate_guess
-  session[:guesses_remaining] -= 1
-  # work out if guess matches solution
   redirect "/play"
 end
 
@@ -41,7 +40,6 @@ end
 get '/lose' do
   erb :lose
 end
-
 
 def reset_variables
   solution = random_word.split("")
@@ -57,14 +55,18 @@ def get_all_session_data
   @incorrect_guesses = session[:incorrect_guesses]
   @solution = session[:solution]
   @guesses_remaining = session[:guesses_remaining]
-  @guess = params["guess"] if params["guess"]
+  @guess = params["guess"].downcase if params["guess"]
+  @warning_message = session[:warning_message]
 end
 
 def evaluate_guess
   if @solution.include?(@guess)
     session[:gapped_solution] = update_gapped_solution
+  elsif session[:incorrect_guesses].include?(@guess)
+    session[:warning_message] = "You've already guessed #{@guess}"
   else
     session[:incorrect_guesses] << @guess
+    session[:guesses_remaining] -= 1
   end
 end
 
@@ -74,12 +76,11 @@ def update_gapped_solution
   @gapped_solution
 end
 
-def success?
-  false
-  # @solution == @gapped_solution
+def win?
+  @solution == @gapped_solution
   # !@gapped_solution.include?("__")
 end
 
-def failure?
+def lose?
   @guesses_remaining < 1
 end
