@@ -1,16 +1,11 @@
-<%= @solution %>
+<h3 id="gapped_solution"><%= @gapped_solution.join(" ") %></h3>
 
+<h3> Incorrect guesses: <%= @incorrect_guesses.join(" ") %> </h3>
+<img src="http://www.numerando.it/images2/gioco_impiccato/gioco_impiccato_0.gif">
 
-<h3>Your word is: <%= @gapped_solution.join(" ") %> </h3>
-
-<h3> Your incorrect guesses: <%= @incorrect_guesses.join(" ") %> </h3>
+<h3> <%= @guesses_remaining %> guesses remaining </h3>
 <h3> <%= @warning_message if @warning_message %> </h3>
-<h3> You have <%= @guesses_remaining %> guesses left </h3>
-<p>Enter your guess</p>
-
 <form method="post">
   <input type='text' name='guess' maxlength="1" pattern="[a-z]" required>
   <input type='submit' value='Guess!'>
 </form>
-
-<p> Bottom of the page </p>

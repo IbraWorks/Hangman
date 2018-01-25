@@ -34,10 +34,13 @@ post "/play" do
 end
 
 get '/win' do
+  redirect '/play' unless session[:gapped_solution] == session[:solution]
   erb :win
 end
 
 get '/lose' do
+  redirect '/play' unless session[:guesses_remaining] < 1
+  @solution = session[:solution]
   erb :lose
 end
 
@@ -47,7 +50,7 @@ def reset_variables
   session[:guesses_remaining] = 6
   session[:incorrect_guesses] = []
   session[:gapped_solution] = []
-  solution.length.times { session[:gapped_solution] << "__" }
+  solution.length.times { session[:gapped_solution] << "_" }
 end
 
 def get_all_session_data
@@ -78,7 +81,6 @@ end
 
 def win?
   @solution == @gapped_solution
-  # !@gapped_solution.include?("__")
 end
 
 def lose?

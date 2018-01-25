@@ -1,10 +1,29 @@
+
 <html>
   <head>
     <style>
+
+      #content-wrapper{
+        margin: auto;
+        width: 800px;
+        border: 3px solid black;
+      }
+      #content{
+        text-align: center;
+        vertical-align: middle;
+      }
+      #gapped_solution{
+        font-size: 200%
+      }
     </style>
   </head>
   <body>
-    <h1>Hangman</h1>
-    <%= yield %>
+    <div id="content-wrapper">
+      <div id="content">
+        <h1>Hangman</h1>
+        <%= yield %>
+      </div>
+    </div>
   </body>
+
 </html>
