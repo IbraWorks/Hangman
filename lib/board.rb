@@ -5,7 +5,7 @@ class Board
   attr_accessor :secret_word, :good_guesses, :bad_guesses, :player_name
 
   def initialize(starting_range, ending_range)
-    Dictionary.get_dictionary("dictionary.txt")
+    Dictionary.get_dictionary("lib/dictionary.txt")
     @secret_word = Dictionary.get_random_word(starting_range, ending_range).downcase.chomp.split("")
     @good_guesses = []
     @secret_word.length.times do

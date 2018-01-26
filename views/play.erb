@@ -1,11 +1,11 @@
 <h3 id="gapped_solution"><%= @gapped_solution.join(" ") %></h3>
 
 <h3> Incorrect guesses: <%= @incorrect_guesses.join(" ") %> </h3>
-<img src="http://www.numerando.it/images2/gioco_impiccato/gioco_impiccato_0.gif">
+<img src=<%= "hangman_#{@guesses_remaining}.png" %> alt="Hangman pic" class="pic">
 
 <h3> <%= @guesses_remaining %> guesses remaining </h3>
 <h3> <%= @warning_message if @warning_message %> </h3>
 <form method="post">
-  <input type='text' name='guess' maxlength="1" pattern="[a-z]" required>
+  <input type='text' name='guess' maxlength="1" pattern="[a-z]" required autofocus>
   <input type='submit' value='Guess!'>
 </form>

@@ -1,11 +1,11 @@
 require 'sinatra'
 require 'erb'
-require 'sinatra/reloader'
+#require 'sinatra/reloader'
 
 enable :sessions
 
 def random_word
-  dictionary = File.readlines('dictionary.txt').map {|word| word.chomp}
+  dictionary = File.readlines('lib/dictionary.txt').map {|word| word.chomp}
   possible_answers = dictionary.select { |word| (word.length > 4) && (word.length < 13) }
   possible_answers.sample.downcase
 end
